@@ -74,14 +74,15 @@ func _physics_process(_delta: float) -> void:
 		var _ataque_instanciado = ataque.instantiate()
 		add_child(_ataque_instanciado)
 		_ataque_instanciado.impacto.connect(_on_ataque_impacto)
+		_ataque_instanciado.position.y = 35
 		if direccion_ataque.x > 0:
-			_ataque_instanciado.position.x = 35
+			_ataque_instanciado.position = Vector2(35, 0)
 		if direccion_ataque.x < 0:
-			_ataque_instanciado.position.x = -35
+			_ataque_instanciado.position = Vector2(-35, 0)
 		if direccion_ataque.y > 0:
-			_ataque_instanciado.position.y = 45
+			_ataque_instanciado.position =  Vector2(0, 45)
 		if direccion_ataque.y < 0:
-			_ataque_instanciado.position.y = -35
+			_ataque_instanciado.position  = Vector2(0, -35)
 		await get_tree().create_timer(0.15).timeout
 		_ataque_instanciado_posicion = _ataque_instanciado.position
 		_ataque_instanciado.queue_free()

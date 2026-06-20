@@ -1,6 +1,6 @@
 extends Node2D
 
-var ratas_maximas = 15
+var ratas_maximas = 12
 var spawn1 
 var spawn2 
 var spawn3
@@ -50,72 +50,22 @@ func spawnear_rata(numero_aleatorio):
 		spawn6 = $Lapida6
 		spawn7 = $Lapida7
 		if numero_aleatorio == 1:
-			var rata = rata_escena.instantiate()
-			var spawn_animacion = spawn_escena.instantiate()
-			spawn_animacion.global_position = spawn1.global_position
-			add_child(spawn_animacion)
-			await get_tree().create_timer(0.8).timeout
-			spawn_animacion.queue_free()
-			rata.global_position = spawn1.global_position + Vector2(0, 20)
-			add_child(rata)
+			posicion_spawn_rata(spawn1)
 		if numero_aleatorio == 2:
-			var rata = rata_escena.instantiate()
-			var spawn_animacion = spawn_escena.instantiate()
-			spawn_animacion.global_position = spawn2.global_position
-			add_child(spawn_animacion)
-			await get_tree().create_timer(0.8).timeout
-			spawn_animacion.queue_free()
-			rata.global_position = spawn2.global_position + Vector2(0, 20)
-			add_child(rata)
+			posicion_spawn_rata(spawn2)
 		if numero_aleatorio == 3:
-			var rata = rata_escena.instantiate()
-			var spawn_animacion = spawn_escena.instantiate()
-			spawn_animacion.global_position = spawn3.global_position
-			add_child(spawn_animacion)
-			await get_tree().create_timer(0.8).timeout
-			spawn_animacion.queue_free()
-			rata.global_position = spawn3.global_position + Vector2(0, 20)
-			add_child(rata)
+			posicion_spawn_rata(spawn3)
 		if numero_aleatorio == 4:
-			var rata = rata_escena.instantiate()
-			var spawn_animacion = spawn_escena.instantiate()
-			spawn_animacion.global_position = spawn4.global_position
-			add_child(spawn_animacion)
-			await get_tree().create_timer(0.8).timeout
-			spawn_animacion.queue_free()
-			rata.global_position = spawn4.global_position + Vector2(0, 20)
-			add_child(rata)
+			posicion_spawn_rata(spawn4)
 		if numero_aleatorio == 5:
-			var rata = rata_escena.instantiate()
-			var spawn_animacion = spawn_escena.instantiate()
-			spawn_animacion.global_position = spawn5.global_position
-			add_child(spawn_animacion)
-			await get_tree().create_timer(0.8).timeout
-			spawn_animacion.queue_free()
-			rata.global_position = spawn5.global_position + Vector2(0, 20)
-			add_child(rata)
+			posicion_spawn_rata(spawn5)
 		if numero_aleatorio == 6:
-			var rata = rata_escena.instantiate()
-			var spawn_animacion = spawn_escena.instantiate()
-			spawn_animacion.global_position = spawn6.global_position
-			add_child(spawn_animacion)
-			await get_tree().create_timer(0.8).timeout
-			spawn_animacion.queue_free()
-			rata.global_position = spawn6.global_position + Vector2(0, 20)
-			add_child(rata)
+			posicion_spawn_rata(spawn6)
 		if numero_aleatorio == 7:
-			var rata = rata_escena.instantiate()
-			var spawn_animacion = spawn_escena.instantiate()
-			spawn_animacion.global_position = spawn7.global_position
-			add_child(spawn_animacion)
-			await get_tree().create_timer(0.8).timeout
-			spawn_animacion.queue_free()
-			rata.global_position = spawn7.global_position + Vector2(0, 20)
-			add_child(rata)
-						
+			posicion_spawn_rata(spawn7)
+			
 func _on_spawn_rata_timeout() -> void:
 	spawnear_rata(numero_random())
-
 
 func _on_player_enemigo_menos() -> void:
 	$"/root/GameState".ratas_muertas += 1
@@ -127,3 +77,14 @@ func contar_ratas():
 		ratas_temporal += 1
 	$"/root/GameState".numero_ratas_en_pantalla = ratas_temporal
 	ratas_temporal = 0
+
+func posicion_spawn_rata(spawn_numero):
+	var rata = rata_escena.instantiate()
+	var spawn_animacion = spawn_escena.instantiate()
+	spawn_animacion.global_position = spawn_numero.global_position
+	add_child(spawn_animacion)
+	await get_tree().create_timer(0.8).timeout
+	spawn_animacion.queue_free()
+	rata.global_position = spawn_numero.global_position + Vector2(0, 20)
+	add_child(rata)
+						
