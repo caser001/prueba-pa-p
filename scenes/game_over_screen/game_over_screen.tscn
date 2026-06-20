@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://0bts4fcqwn0j"]
+
+[ext_resource type="Texture2D" uid="uid://bbpsliixcfeym" path="res://textures/game over screen/gameover.png" id="1_l2cnm"]
+[ext_resource type="Script" uid="uid://b6mtttb1yoh2j" path="res://scenes/game_over_screen/game_over_screen.gd" id="1_wndrr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2cnm"]
+font_size = 120
+
+[node name="GameOverScreen" type="Node2D" unique_id=1246982559]
+script = ExtResource("1_wndrr")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=565766338]
+offset_left = -12.0
+offset_top = -192.0
+offset_right = 1164.0
+offset_bottom = 870.0
+texture = ExtResource("1_l2cnm")
+
+[node name="TotalRatasMuertas" type="Label" parent="." unique_id=1760683277]
+offset_left = 631.0
+offset_top = 344.0
+offset_right = 1118.0
+offset_bottom = 509.0
+text = "0"
+label_settings = SubResource("LabelSettings_l2cnm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotonReiniciar" type="Button" parent="." unique_id=1795086269]
+offset_left = 461.0
+offset_top = 530.0
+offset_right = 706.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 46
+text = "Reintentar X"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=496005190]
+position = Vector2(577, 323)
+
+[connection signal="pressed" from="BotonReiniciar" to="." method="_on_boton_reiniciar_pressed"]

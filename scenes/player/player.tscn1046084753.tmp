@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bjtkdk4tv3w1j"]
+
+[ext_resource type="Texture2D" uid="uid://dj35ajs1v466e" path="res://textures/personaje/gato.png" id="1_8afob"]
+[ext_resource type="Script" uid="uid://cq6310yh1atsc" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://bipp42sfxaqyd" path="res://scenes/attack/attack.tscn" id="3_gmlin"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
+radius = 12.0
+height = 29.0
+
+[node name="Player" type="CharacterBody2D" unique_id=830138615]
+collision_mask = 8
+script = ExtResource("1_dovo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1160275896]
+texture_filter = 1
+texture = ExtResource("1_8afob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=466406417]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_dovo2")
+
+[node name="Attack" parent="." unique_id=1907361327 instance=ExtResource("3_gmlin")]

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bipp42sfxaqyd"]
+
+[ext_resource type="Texture2D" uid="uid://c8b8sl7244hhv" path="res://textures/animacion pegar/animacion_pegar.png" id="1_awmal"]
+[ext_resource type="Script" uid="uid://dfy3ps3modjg6" path="res://scenes/attack/attack.gd" id="1_kgjqm"]
+[ext_resource type="AudioStream" uid="uid://nlioa82ht0ea" path="res://sound/sfx/efecto_matar.wav" id="3_8td5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8sob"]
+size = Vector2(22.666668, 22.666668)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgjqm"]
+atlas = ExtResource("1_awmal")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8td5i"]
+atlas = ExtResource("1_awmal")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv7ak"]
+atlas = ExtResource("1_awmal")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahvqj"]
+atlas = ExtResource("1_awmal")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ju1i0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgjqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8td5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv7ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahvqj")
+}],
+"loop": true,
+"name": &"pegar",
+"speed": 25.0
+}]
+
+[node name="Attack" type="Area2D" unique_id=1907361327]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_kgjqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1199784014]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_t8sob")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=167332036]
+texture_filter = 1
+position = Vector2(-0.19999923, 0.20000009)
+scale = Vector2(1.7750001, 1.7750001)
+sprite_frames = SubResource("SpriteFrames_ju1i0")
+animation = &"pegar"
+autoplay = "pegar"
+frame_progress = 0.2800111
+
+[node name="EfectoMatar" type="AudioStreamPlayer2D" parent="." unique_id=821116875]
+stream = ExtResource("3_8td5i")
+volume_db = 1.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

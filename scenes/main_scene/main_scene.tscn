@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bayqfhc2dt77x"]
+
+[ext_resource type="Script" uid="uid://crxmwyr1eihw5" path="res://scenes/main_scene/main_scene.gd" id="1_34m6u"]
+[ext_resource type="PackedScene" uid="uid://e5dp6uy8lgfg" path="res://scenes/map/map.tscn" id="1_symxd"]
+[ext_resource type="PackedScene" uid="uid://ckk7uvsjoo8o0" path="res://scenes/interfaz/interfaz.tscn" id="2_2cqfw"]
+[ext_resource type="PackedScene" uid="uid://bjtkdk4tv3w1j" path="res://scenes/player/player.tscn" id="2_o5t4i"]
+[ext_resource type="AudioStream" uid="uid://bkk50ybcyk681" path="res://sound/music/musica_juego.wav" id="6_6loks"]
+[ext_resource type="PackedScene" uid="uid://dyid4lfgbcxxs" path="res://scenes/lapida/lapida.tscn" id="6_kbdpr"]
+[ext_resource type="Script" uid="uid://bvbvqyacj3xr4" path="res://scenes/main_scene/controlador_pausa.gd" id="7_6loks"]
+
+[node name="MainScene" type="Node2D" unique_id=1705776271 node_paths=PackedStringArray("interfaz")]
+script = ExtResource("1_34m6u")
+interfaz = NodePath("Camera2D/Interfaz")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2143081933]
+zoom = Vector2(1.505, 1.505)
+editor_draw_limits = true
+
+[node name="Interfaz" parent="Camera2D" unique_id=195390521 instance=ExtResource("2_2cqfw")]
+z_index = 1
+offset_left = -381.05
+offset_top = -218.545
+offset_right = -381.05
+offset_bottom = -218.545
+
+[node name="Map" parent="." unique_id=1727727041 instance=ExtResource("1_symxd")]
+
+[node name="Player" parent="." unique_id=830138615 instance=ExtResource("2_o5t4i")]
+position = Vector2(-184, 154)
+
+[node name="Lapida" parent="." unique_id=175574850 instance=ExtResource("6_kbdpr")]
+position = Vector2(-263, -132)
+
+[node name="Lapida2" parent="." unique_id=223963434 instance=ExtResource("6_kbdpr")]
+position = Vector2(-95, -141)
+
+[node name="Lapida3" parent="." unique_id=246473092 instance=ExtResource("6_kbdpr")]
+position = Vector2(136, -137)
+
+[node name="Lapida4" parent="." unique_id=258752987 instance=ExtResource("6_kbdpr")]
+position = Vector2(-300, 52)
+
+[node name="Lapida5" parent="." unique_id=1735327391 instance=ExtResource("6_kbdpr")]
+position = Vector2(-41, 28)
+
+[node name="Lapida6" parent="." unique_id=1237760943 instance=ExtResource("6_kbdpr")]
+position = Vector2(292, 39)
+
+[node name="Lapida7" parent="." unique_id=782784462 instance=ExtResource("6_kbdpr")]
+position = Vector2(131, 173)
+
+[node name="SpawnRata" type="Timer" parent="." unique_id=1522981772]
+wait_time = 1.6999999999999995
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2098398879]
+stream = ExtResource("6_6loks")
+volume_db = -8.0
+autoplay = true
+bus = &"Music"
+
+[node name="ControladorPausa" type="Node" parent="." unique_id=2100242865]
+process_mode = 3
+script = ExtResource("7_6loks")
+
+[connection signal="enemigo_menos" from="Player" to="." method="_on_player_enemigo_menos"]
+[connection signal="timeout" from="SpawnRata" to="." method="_on_spawn_rata_timeout"]
