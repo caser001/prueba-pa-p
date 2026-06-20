@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://clpu82i0xcqxt"]
+
+[ext_resource type="Texture2D" uid="uid://drm86pgjrm2v7" path="res://textures/enemigo/salir.png" id="1_4rxpu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bk1br"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rxpu"]
+atlas = ExtResource("1_4rxpu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk1br"]
+atlas = ExtResource("1_4rxpu")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dt74"]
+atlas = ExtResource("1_4rxpu")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nd7u"]
+atlas = ExtResource("1_4rxpu")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78rup"]
+atlas = ExtResource("1_4rxpu")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xkrs"]
+atlas = ExtResource("1_4rxpu")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ul80t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rxpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk1br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dt74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nd7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78rup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xkrs")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="AnimacionSpawn" type="Area2D" unique_id=1555686850]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=859981544]
+shape = SubResource("CircleShape2D_bk1br")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=541952359]
+position = Vector2(-6, 17)
+sprite_frames = SubResource("SpriteFrames_ul80t")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0

@@ -35,7 +35,7 @@ position = Vector2(-263, -132)
 position = Vector2(-95, -141)
 
 [node name="Lapida3" parent="." unique_id=246473092 instance=ExtResource("6_kbdpr")]
-position = Vector2(136, -137)
+position = Vector2(205, -140)
 
 [node name="Lapida4" parent="." unique_id=258752987 instance=ExtResource("6_kbdpr")]
 position = Vector2(-300, 52)
@@ -44,10 +44,10 @@ position = Vector2(-300, 52)
 position = Vector2(-41, 28)
 
 [node name="Lapida6" parent="." unique_id=1237760943 instance=ExtResource("6_kbdpr")]
-position = Vector2(292, 39)
+position = Vector2(279, 38)
 
 [node name="Lapida7" parent="." unique_id=782784462 instance=ExtResource("6_kbdpr")]
-position = Vector2(131, 173)
+position = Vector2(119, 164)
 
 [node name="SpawnRata" type="Timer" parent="." unique_id=1522981772]
 wait_time = 1.6999999999999995

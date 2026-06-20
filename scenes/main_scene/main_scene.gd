@@ -10,6 +10,7 @@ var spawn6
 var spawn7
 
 const rata_escena = preload("res://scenes/enemy/rata.tscn")
+const spawn_escena = preload("res://scenes/animacion_spawn/animacion_spawn.tscn")
 @export var interfaz: Control
 
 
@@ -50,31 +51,66 @@ func spawnear_rata(numero_aleatorio):
 		spawn7 = $Lapida7
 		if numero_aleatorio == 1:
 			var rata = rata_escena.instantiate()
-			rata.global_position = spawn1.global_position
+			var spawn_animacion = spawn_escena.instantiate()
+			spawn_animacion.global_position = spawn1.global_position
+			add_child(spawn_animacion)
+			await get_tree().create_timer(0.8).timeout
+			spawn_animacion.queue_free()
+			rata.global_position = spawn1.global_position + Vector2(0, 20)
 			add_child(rata)
 		if numero_aleatorio == 2:
 			var rata = rata_escena.instantiate()
-			rata.global_position = spawn2.global_position
+			var spawn_animacion = spawn_escena.instantiate()
+			spawn_animacion.global_position = spawn2.global_position
+			add_child(spawn_animacion)
+			await get_tree().create_timer(0.8).timeout
+			spawn_animacion.queue_free()
+			rata.global_position = spawn2.global_position + Vector2(0, 20)
 			add_child(rata)
 		if numero_aleatorio == 3:
 			var rata = rata_escena.instantiate()
-			rata.global_position = spawn3.global_position
+			var spawn_animacion = spawn_escena.instantiate()
+			spawn_animacion.global_position = spawn3.global_position
+			add_child(spawn_animacion)
+			await get_tree().create_timer(0.8).timeout
+			spawn_animacion.queue_free()
+			rata.global_position = spawn3.global_position + Vector2(0, 20)
 			add_child(rata)
 		if numero_aleatorio == 4:
 			var rata = rata_escena.instantiate()
-			rata.global_position = spawn4.global_position
+			var spawn_animacion = spawn_escena.instantiate()
+			spawn_animacion.global_position = spawn4.global_position
+			add_child(spawn_animacion)
+			await get_tree().create_timer(0.8).timeout
+			spawn_animacion.queue_free()
+			rata.global_position = spawn4.global_position + Vector2(0, 20)
 			add_child(rata)
 		if numero_aleatorio == 5:
 			var rata = rata_escena.instantiate()
-			rata.global_position = spawn5.global_position
+			var spawn_animacion = spawn_escena.instantiate()
+			spawn_animacion.global_position = spawn5.global_position
+			add_child(spawn_animacion)
+			await get_tree().create_timer(0.8).timeout
+			spawn_animacion.queue_free()
+			rata.global_position = spawn5.global_position + Vector2(0, 20)
 			add_child(rata)
 		if numero_aleatorio == 6:
 			var rata = rata_escena.instantiate()
-			rata.global_position = spawn6.global_position
+			var spawn_animacion = spawn_escena.instantiate()
+			spawn_animacion.global_position = spawn6.global_position
+			add_child(spawn_animacion)
+			await get_tree().create_timer(0.8).timeout
+			spawn_animacion.queue_free()
+			rata.global_position = spawn6.global_position + Vector2(0, 20)
 			add_child(rata)
 		if numero_aleatorio == 7:
 			var rata = rata_escena.instantiate()
-			rata.global_position = spawn7.global_position
+			var spawn_animacion = spawn_escena.instantiate()
+			spawn_animacion.global_position = spawn7.global_position
+			add_child(spawn_animacion)
+			await get_tree().create_timer(0.8).timeout
+			spawn_animacion.queue_free()
+			rata.global_position = spawn7.global_position + Vector2(0, 20)
 			add_child(rata)
 						
 func _on_spawn_rata_timeout() -> void:
