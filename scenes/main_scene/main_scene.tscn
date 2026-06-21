@@ -18,10 +18,10 @@ editor_draw_limits = true
 
 [node name="Interfaz" parent="Camera2D" unique_id=195390521 instance=ExtResource("2_2cqfw")]
 z_index = 1
-offset_left = -381.05
-offset_top = -218.545
-offset_right = -381.05
-offset_bottom = -218.545
+offset_left = -379.54
+offset_top = -215.295
+offset_right = -379.54
+offset_bottom = -215.295
 
 [node name="Map" parent="." unique_id=1727727041 instance=ExtResource("1_symxd")]
 
@@ -29,27 +29,27 @@ offset_bottom = -218.545
 position = Vector2(-184, 154)
 
 [node name="Lapida" parent="." unique_id=175574850 instance=ExtResource("6_kbdpr")]
-position = Vector2(-263, -132)
+position = Vector2(-291, -100)
 
 [node name="Lapida2" parent="." unique_id=223963434 instance=ExtResource("6_kbdpr")]
-position = Vector2(-95, -141)
+position = Vector2(-79, -109)
 
 [node name="Lapida3" parent="." unique_id=246473092 instance=ExtResource("6_kbdpr")]
-position = Vector2(205, -140)
+position = Vector2(197, -104)
 
 [node name="Lapida4" parent="." unique_id=258752987 instance=ExtResource("6_kbdpr")]
-position = Vector2(-300, 52)
+position = Vector2(-302, 87)
 
 [node name="Lapida5" parent="." unique_id=1735327391 instance=ExtResource("6_kbdpr")]
-position = Vector2(-41, 28)
+position = Vector2(-22, 65)
 
 [node name="Lapida6" parent="." unique_id=1237760943 instance=ExtResource("6_kbdpr")]
-position = Vector2(279, 38)
+position = Vector2(292, 73)
 
 [node name="Lapida7" parent="." unique_id=782784462 instance=ExtResource("6_kbdpr")]
-position = Vector2(119, 164)
+position = Vector2(116, 152)
 
-[node name="SpawnRata" type="Timer" parent="." unique_id=1522981772]
+[node name="SpawnEnemigo" type="Timer" parent="." unique_id=1522981772]
 wait_time = 1.6999999999999995
 autostart = true
 
@@ -64,4 +64,4 @@ process_mode = 3
 script = ExtResource("7_6loks")
 
 [connection signal="enemigo_menos" from="Player" to="." method="_on_player_enemigo_menos"]
-[connection signal="timeout" from="SpawnRata" to="." method="_on_spawn_rata_timeout"]
+[connection signal="timeout" from="SpawnEnemigo" to="." method="_on_spawn_enemigo_timeout"]

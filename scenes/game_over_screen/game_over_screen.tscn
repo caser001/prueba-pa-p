@@ -16,7 +16,7 @@ offset_right = 1164.0
 offset_bottom = 870.0
 texture = ExtResource("1_l2cnm")
 
-[node name="TotalRatasMuertas" type="Label" parent="." unique_id=1760683277]
+[node name="TotalEnemigosMuertos" type="Label" parent="." unique_id=1760683277]
 offset_left = 631.0
 offset_top = 344.0
 offset_right = 1118.0

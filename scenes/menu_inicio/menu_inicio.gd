@@ -9,7 +9,7 @@ func _on_button_pressed() -> void:
 
 func iniciar_juego():
 	$"/root/GameState".player_hp = 7
-	$"/root/GameState".ratas_muertas = 0
+	$"/root/GameState".enemigos_muertos = 0
 	get_tree().change_scene_to_file("res://scenes/main_scene/main_scene.tscn")
 
 

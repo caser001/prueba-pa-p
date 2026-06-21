@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ckk7uvsjoo8o0"]
 
-[ext_resource type="Script" uid="uid://dnmr0crwi0ir0" path="res://interfaz.gd" id="1_t4mhf"]
+[ext_resource type="Script" uid="uid://dnmr0crwi0ir0" path="res://scenes/interfaz/interfaz.gd" id="1_t4mhf"]
 
 [node name="Interfaz" type="Control" unique_id=195390521]
 texture_filter = 1
@@ -8,8 +8,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
+offset_right = -1299.9976
+offset_bottom = -700.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t4mhf")
@@ -18,24 +18,31 @@ script = ExtResource("1_t4mhf")
 layout_mode = 0
 offset_right = 414.0
 offset_bottom = 88.0
-scale = Vector2(0.275, 0.275)
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 90
 
-[node name="TuVidaEs" type="Label" parent="BoxContainer" unique_id=2067794286]
+[node name="BoxContainer3" type="BoxContainer" parent="BoxContainer" unique_id=341665281]
+layout_mode = 2
+
+[node name="TuVidaEs" type="Label" parent="BoxContainer/BoxContainer3" unique_id=2067794286]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "HP: "
 
-[node name="NumeroVida" type="Label" parent="BoxContainer" unique_id=1066323409]
+[node name="NumeroVida" type="Label" parent="BoxContainer/BoxContainer3" unique_id=1066323409]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "7"
 
-[node name="RatasMuertasSon" type="Label" parent="BoxContainer" unique_id=977978245]
+[node name="BoxContainer2" type="BoxContainer" parent="BoxContainer" unique_id=1978800397]
+layout_mode = 2
+
+[node name="EnemigosMuertosSon" type="Label" parent="BoxContainer/BoxContainer2" unique_id=977978245]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Ratas: "
+text = "Bajas: "
 
-[node name="NumeroRatasMuertas" type="Label" parent="BoxContainer" unique_id=352893303]
+[node name="NumeroEnemigosMuertas" type="Label" parent="BoxContainer/BoxContainer2" unique_id=352893303]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"

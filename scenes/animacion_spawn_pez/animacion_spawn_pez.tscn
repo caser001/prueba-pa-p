@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cj4jhrfwagffp"]
+
+[ext_resource type="Texture2D" uid="uid://di2w5k1ghvw1p" path="res://textures/enemigo/salir_pez.png" id="1_wolam"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bk1br"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3jxf"]
+atlas = ExtResource("1_wolam")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc146"]
+atlas = ExtResource("1_wolam")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf4mi"]
+atlas = ExtResource("1_wolam")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5oex"]
+atlas = ExtResource("1_wolam")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kthj"]
+atlas = ExtResource("1_wolam")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ul80t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3jxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc146")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf4mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5oex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kthj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="AnimacionSpawnPez" type="Area2D" unique_id=1555686850]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=859981544]
+shape = SubResource("CircleShape2D_bk1br")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=541952359]
+position = Vector2(-6, 23)
+sprite_frames = SubResource("SpriteFrames_ul80t")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0

@@ -175,7 +175,8 @@ script = ExtResource("1_dovo2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1223812056]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qek5x")
-animation = &"move_up"
+animation = &"idle_down"
+frame_progress = 0.6069117
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=466406417]
 position = Vector2(0, 5)
@@ -195,7 +196,7 @@ bus = &"SFX"
 
 [node name="EfectoMaullido" type="AudioStreamPlayer2D" parent="." unique_id=2070082777]
 stream = ExtResource("4_lvxji")
-volume_db = -8.0
+volume_db = -20.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]

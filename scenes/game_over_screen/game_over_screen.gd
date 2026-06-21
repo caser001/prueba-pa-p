@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var total_ratas_muertas = $TotalRatasMuertas
+@onready var total_enemigos_muertos = $TotalEnemigosMuertos
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("equis"):
@@ -17,10 +17,10 @@ func _on_boton_reiniciar_pressed() -> void:
 	iniciar_menu()
 
 func actualizar_puntuacion():
-	total_ratas_muertas.text = str($"/root/GameState".ratas_muertas)
+	total_enemigos_muertos.text = str($"/root/GameState".enemigos_muertos)
 
 
 func iniciar_menu():
 	$"/root/GameState".player_hp = 7
-	$"/root/GameState".ratas_muertas = 0
+	$"/root/GameState".enemigos_muertos = 0
 	get_tree().change_scene_to_file("res://scenes/menu_inicio/menu_inicio.tscn")
