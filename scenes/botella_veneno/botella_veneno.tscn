@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cav5g6t3t6hgr"]
+
+[ext_resource type="Texture2D" uid="uid://ce0hl37c15tl3" path="res://textures/items/botella_veneno.png" id="1_tyiag"]
+[ext_resource type="Script" uid="uid://c8ptxdxqo12vy" path="res://scenes/botella_veneno/botella_veneno.gd" id="2_7vx52"]
+[ext_resource type="AudioStream" uid="uid://cw0gd3lexc8do" path="res://sound/sfx/coger_item.wav" id="3_4q2vr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vx52"]
+atlas = ExtResource("1_tyiag")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q2vr"]
+atlas = ExtResource("1_tyiag")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x650a"]
+atlas = ExtResource("1_tyiag")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oihr1"]
+atlas = ExtResource("1_tyiag")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkwcc"]
+atlas = ExtResource("1_tyiag")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a120"]
+atlas = ExtResource("1_tyiag")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd7qr"]
+atlas = ExtResource("1_tyiag")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0pyv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vx52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q2vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x650a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oihr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkwcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a120")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd7qr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r03jh"]
+radius = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcx55"]
+radius = 3.0
+height = 22.0
+
+[node name="BotellaVeneno" type="StaticBody2D" unique_id=1034833196 groups=["item"]]
+script = ExtResource("2_7vx52")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=373040279]
+sprite_frames = SubResource("SpriteFrames_0pyv2")
+autoplay = "default"
+frame_progress = 0.75242954
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1997134130]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=876064038]
+shape = SubResource("CapsuleShape2D_r03jh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1712914806]
+shape = SubResource("CapsuleShape2D_dcx55")
+
+[node name="Recoger" type="AudioStreamPlayer2D" parent="." unique_id=1505774870]
+stream = ExtResource("3_4q2vr")
+volume_db = 5.0
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="TimerDesaparecer" type="Timer" parent="." unique_id=1661855387]
+wait_time = 1.2
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="TimerDesaparecer" to="." method="_on_timer_desaparecer_timeout"]

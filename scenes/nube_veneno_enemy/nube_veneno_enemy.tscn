@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://buxn861kk1i6u"]
+
+[ext_resource type="Script" uid="uid://iafnmiou7q1o" path="res://scenes/nube_veneno_enemy/nube_veneno_enemy.gd" id="1_am2fg"]
+[ext_resource type="Texture2D" uid="uid://bxs3c0gvm3bdm" path="res://textures/animacion pegar/animacion_veneno_enemigo.png" id="1_iewl1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am2fg"]
+atlas = ExtResource("1_iewl1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btkfv"]
+atlas = ExtResource("1_iewl1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7c4p"]
+atlas = ExtResource("1_iewl1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdip"]
+atlas = ExtResource("1_iewl1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwjav"]
+atlas = ExtResource("1_iewl1")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wmd0"]
+atlas = ExtResource("1_iewl1")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_att1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am2fg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btkfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7c4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycdip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwjav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wmd0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1g01y"]
+radius = 16.0
+
+[node name="nube_veneno_enemy" type="Area2D" unique_id=157582694]
+z_index = 1
+collision_layer = 12
+script = ExtResource("1_am2fg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=477854445]
+sprite_frames = SubResource("SpriteFrames_att1k")
+autoplay = "default"
+frame_progress = 0.124140754
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=118536815]
+shape = SubResource("CircleShape2D_1g01y")
+
+[node name="TimerNubeVenenoEnemy" type="Timer" parent="." unique_id=519709669]
+wait_time = 6.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerNubeVenenoEnemy" to="." method="_on_timer_nube_veneno_enemy_timeout"]

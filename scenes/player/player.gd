@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var _velocidad: float = 200
+var _velocidad: float = 220
 var player_position: Vector2 = position
 var atacando: bool = false
 var _ataque_instanciado_posicion: Vector2
@@ -13,6 +13,7 @@ var numero_parpadeos: int = 6
 
 const ataque = preload("res://scenes/attack/attack.tscn")
 
+
 signal enemigo_menos
 
 
@@ -22,7 +23,8 @@ func _ready() -> void:
 	
 
 func _physics_process(_delta: float) -> void:
-	
+	$"/root/GameState".posicion_jugador = self.position
+	interfaz.actualizar_ratas_muertas($"/root/GameState".enemigos_muertos)
 	
 	#movimiento	
 	var direccion: Vector2
@@ -87,10 +89,8 @@ func _physics_process(_delta: float) -> void:
 		_ataque_instanciado_posicion = _ataque_instanciado.position
 		_ataque_instanciado.queue_free()
 		atacando = false
-		
-		
-		
-	#recibir dano
+
+	#recibir dano y sonido
 	if !recieving_damage:
 		for body in $Hitbox.get_overlapping_bodies():
 			if body.is_in_group("enemies"):
@@ -107,6 +107,8 @@ func _physics_process(_delta: float) -> void:
 
 func _on_ataque_impacto(body):
 	if body.is_in_group("enemies"):
+		$"/root/GameState".posicion_enemigo_muerto = body.position
+		$"/root/GameState".ultimo_enemigo_muerto = body
 		body.queue_free()
 		enemigo_menos.emit()
 
@@ -116,9 +118,10 @@ func recibir_dano():
 	$"/root/GameState".player_hp -= 1
 	if $"/root/GameState".player_hp < 0:
 		$"/root/GameState".player_hp = 0
-	interfaz.actualizar_vida($"/root/GameState".player_hp)
 	await get_tree().create_timer(1.5).timeout
 	recieving_damage = false
+	
+
 	
 func parpadeo():
 	for i in numero_parpadeos:
@@ -126,4 +129,9 @@ func parpadeo():
 		await get_tree().create_timer(0.1).timeout
 		$AnimatedSprite2D.show()
 		await get_tree().create_timer(0.1).timeout
-		
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemyattack"):
+		recibir_dano()
+		$EfectoMaullido.play()
+		parpadeo()

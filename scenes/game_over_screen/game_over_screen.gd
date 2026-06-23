@@ -23,4 +23,5 @@ func actualizar_puntuacion():
 func iniciar_menu():
 	$"/root/GameState".player_hp = 7
 	$"/root/GameState".enemigos_muertos = 0
+	$"/root/GameState".cantidad_botellas_veneno = 0
 	get_tree().change_scene_to_file("res://scenes/menu_inicio/menu_inicio.tscn")

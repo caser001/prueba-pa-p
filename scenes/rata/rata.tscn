@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://hx8lww1djrkh" path="res://scenes/rata/rata.gd" id="1_0bbm6"]
 [ext_resource type="Texture2D" uid="uid://betpj26suebgh" path="res://textures/enemigo/rata_animada.png" id="2_0bbm6"]
+[ext_resource type="AudioStream" uid="uid://coyhvo2oq1mm8" path="res://sound/sfx/peo_enemigo.wav" id="3_kl2f2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ld7r6"]
 atlas = ExtResource("2_0bbm6")
@@ -43,7 +44,7 @@ animations = [{
 radius = 9.0
 height = 42.0
 
-[node name="Rata" type="CharacterBody2D" unique_id=1587974598 node_paths=PackedStringArray("_sprite_rata") groups=["enemies"]]
+[node name="Rata" type="CharacterBody2D" unique_id=1587974598 node_paths=PackedStringArray("_sprite_rata") groups=["enemies", "rata"]]
 collision_layer = 4
 collision_mask = 22
 script = ExtResource("1_0bbm6")
@@ -59,3 +60,14 @@ frame_progress = 1.0
 position = Vector2(1, 10)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_a3pup")
+
+[node name="TimerSpawneoVeneno" type="Timer" parent="." unique_id=1325357901]
+wait_time = 2.0
+autostart = true
+
+[node name="PeoEnemigo" type="AudioStreamPlayer2D" parent="." unique_id=1331972510]
+stream = ExtResource("3_kl2f2")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="timeout" from="TimerSpawneoVeneno" to="." method="_on_timer_spawneo_veneno_timeout"]

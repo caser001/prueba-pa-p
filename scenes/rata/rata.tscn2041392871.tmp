@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c8j5ybrbk86mt"]
+
+[ext_resource type="Script" uid="uid://hx8lww1djrkh" path="res://scenes/rata/rata.gd" id="1_0bbm6"]
+[ext_resource type="Texture2D" uid="uid://betpj26suebgh" path="res://textures/enemigo/rata_animada.png" id="2_0bbm6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld7r6"]
+atlas = ExtResource("2_0bbm6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aemy2"]
+atlas = ExtResource("2_0bbm6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0rck"]
+atlas = ExtResource("2_0bbm6")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66s8c"]
+atlas = ExtResource("2_0bbm6")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hp0pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld7r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aemy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0rck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66s8c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3pup"]
+radius = 9.0
+height = 42.0
+
+[node name="Rata" type="CharacterBody2D" unique_id=1587974598 node_paths=PackedStringArray("_sprite_rata") groups=["enemies", "rata"]]
+collision_layer = 4
+collision_mask = 22
+script = ExtResource("1_0bbm6")
+_sprite_rata = NodePath("_sprite_rata")
+
+[node name="_sprite_rata" type="AnimatedSprite2D" parent="." unique_id=17766844]
+sprite_frames = SubResource("SpriteFrames_hp0pv")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1810292344]
+position = Vector2(1, 10)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_a3pup")
+
+[node name="TimerSpawneoVeneno" type="Timer" parent="." unique_id=1325357901]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="TimerSpawneoVeneno" to="." method="_on_timer_spawneo_veneno_timeout"]

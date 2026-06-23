@@ -7,7 +7,7 @@ extends CharacterBody2D
 var player: CharacterBody2D
 var attack: Area2D
 var _velocidad_atun: float = 65
-var _velocidad_extra_atun: float = 270
+var _velocidad_extra_atun: float = 280
 var turbo: bool = false
 @onready var _particulas_jetpack_procesadas = _particulas_jetpack.process_material as ParticleProcessMaterial
 
@@ -47,22 +47,23 @@ func _physics_process(_delta: float) -> void:
 
 
 func numero_random():
-	return randi_range(1, 3)
+	return randi_range(1, 2)
 
 
 func _on_timer_turbo_timeout() -> void:
 	if turbo == false:
 		if numero_random() == 1:
+			$Turbo.play()
 			$sprite_atun.modulate = Color(1.0, 0.353, 0.353, 1.0)
-			await get_tree().create_timer(0.10).timeout
+			await get_tree().create_timer(0.06).timeout
 			$sprite_atun.modulate = Color(1,1,1)
-			await get_tree().create_timer(0.10).timeout
+			await get_tree().create_timer(0.06).timeout
 			$sprite_atun.modulate = Color(1.0, 0.353, 0.353, 1.0)
-			await get_tree().create_timer(0.10).timeout
+			await get_tree().create_timer(0.06).timeout
 			$sprite_atun.modulate = Color(1,1,1)
 			$sprite_atun/sprite_jetpack.modulate = Color(1,1,1)
 			turbo = true
-			_particulas_jetpack.amount = 150
+			_particulas_jetpack.amount = 250
 			_particulas_jetpack_procesadas.initial_velocity_min = 100
 			_particulas_jetpack_procesadas.initial_velocity_max = 200
 	else:

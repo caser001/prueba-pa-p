@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ckk7uvsjoo8o0"]
 
 [ext_resource type="Script" uid="uid://dnmr0crwi0ir0" path="res://scenes/interfaz/interfaz.gd" id="1_t4mhf"]
+[ext_resource type="Theme" uid="uid://ounqp35uxv74" path="res://themes/theme_interfaz.tres" id="2_dtca8"]
 
 [node name="Interfaz" type="Control" unique_id=195390521]
 texture_filter = 1
@@ -14,35 +15,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t4mhf")
 
-[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1101266325]
+[node name="BoxContainerPadre" type="BoxContainer" parent="." unique_id=1101266325]
 layout_mode = 0
 offset_right = 414.0
 offset_bottom = 88.0
 scale = Vector2(0.3, 0.3)
+theme = ExtResource("2_dtca8")
 theme_override_constants/separation = 90
 
-[node name="BoxContainer3" type="BoxContainer" parent="BoxContainer" unique_id=341665281]
+[node name="BoxContainer1" type="BoxContainer" parent="BoxContainerPadre" unique_id=341665281]
 layout_mode = 2
 
-[node name="TuVidaEs" type="Label" parent="BoxContainer/BoxContainer3" unique_id=2067794286]
+[node name="TuVidaEs" type="Label" parent="BoxContainerPadre/BoxContainer1" unique_id=2067794286]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme = ExtResource("2_dtca8")
 text = "HP: "
 
-[node name="NumeroVida" type="Label" parent="BoxContainer/BoxContainer3" unique_id=1066323409]
+[node name="NumeroVida" type="Label" parent="BoxContainerPadre/BoxContainer1" unique_id=1066323409]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme = ExtResource("2_dtca8")
 text = "7"
 
-[node name="BoxContainer2" type="BoxContainer" parent="BoxContainer" unique_id=1978800397]
+[node name="BoxContainer2" type="BoxContainer" parent="BoxContainerPadre" unique_id=1978800397]
 layout_mode = 2
 
-[node name="EnemigosMuertosSon" type="Label" parent="BoxContainer/BoxContainer2" unique_id=977978245]
+[node name="EnemigosMuertosSon" type="Label" parent="BoxContainerPadre/BoxContainer2" unique_id=977978245]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
 text = "Bajas: "
 
-[node name="NumeroEnemigosMuertas" type="Label" parent="BoxContainer/BoxContainer2" unique_id=352893303]
+[node name="NumeroEnemigosMuertas" type="Label" parent="BoxContainerPadre/BoxContainer2" unique_id=352893303]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
 text = "0"
+
+[node name="BoxContainer3" type="BoxContainer" parent="BoxContainerPadre" unique_id=1654306696]
+layout_mode = 2
+
+[node name="BotellasVenenoSon" type="Label" parent="BoxContainerPadre/BoxContainer3" unique_id=1403898346]
+layout_mode = 2
+text = "Veneno: "
+
+[node name="NumeroBotellasVeneno" type="Label" parent="BoxContainerPadre/BoxContainer3" unique_id=778057771]
+layout_mode = 2
