@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bumovgp7xkhxw"]
+
+[ext_resource type="Script" uid="uid://x3rxbl7hr08v" path="res://scenes/menu_ajustes/menu_ajustes.gd" id="1_ax38k"]
+[ext_resource type="Texture2D" uid="uid://bn3vubjjiopwd" path="res://textures/menus/menu_ajustes.png" id="1_y8w1g"]
+[ext_resource type="Texture2D" uid="uid://bh1aoqljrgqnt" path="res://textures/menus/check.png" id="3_tl42i"]
+
+[node name="MenuAjustes" type="Node2D" unique_id=1444929389]
+script = ExtResource("1_ax38k")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2064633140]
+zoom = Vector2(1.5, 1.5)
+
+[node name="FondoAjustes" type="TextureRect" parent="." unique_id=2134369226]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_y8w1g")
+
+[node name="CheckAndroid" type="TextureRect" parent="." unique_id=757742520]
+offset_left = 98.0
+offset_top = -24.0
+offset_right = 162.0
+offset_bottom = 40.0
+texture = ExtResource("3_tl42i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=174572230]
+offset_left = -103.0
+offset_top = -1.0
+offset_right = 103.0
+offset_bottom = 158.0
+
+[node name="ModoAndroid" type="Button" parent="VBoxContainer" unique_id=514336644]
+layout_mode = 2
+text = "Modo Android"
+
+[node name="Volumen" type="Label" parent="VBoxContainer" unique_id=1377163027]
+layout_mode = 2
+text = "Volumen"
+
+[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer" unique_id=1208915632]
+layout_mode = 2
+max_value = 3.0
+value = 1.5
+
+[node name="Volver" type="Button" parent="VBoxContainer" unique_id=2021533967]
+layout_mode = 2
+text = "Volver"
+
+[connection signal="pressed" from="VBoxContainer/ModoAndroid" to="." method="_on_modo_android_pressed"]
+[connection signal="scrolling" from="VBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_scrolling"]
+[connection signal="button_down" from="VBoxContainer/Volver" to="." method="_on_volver_button_down"]

@@ -9,6 +9,8 @@ var ultimo_enemigo_muerto
 var cantidad_botellas_veneno: int
 var posicion_jugador: Vector2
 var posicion_rata: Vector2
+var android: bool = false
+var volumen_general: float = 2
 
 
 func _ready() -> void:

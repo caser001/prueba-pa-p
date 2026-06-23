@@ -7,22 +7,26 @@
 [ext_resource type="AudioStream" uid="uid://bkk50ybcyk681" path="res://sound/music/musica_juego.wav" id="6_6loks"]
 [ext_resource type="PackedScene" uid="uid://dyid4lfgbcxxs" path="res://scenes/lapida/lapida.tscn" id="6_kbdpr"]
 [ext_resource type="Script" uid="uid://bvbvqyacj3xr4" path="res://scenes/main_scene/controlador_pausa.gd" id="7_6loks"]
+[ext_resource type="PackedScene" uid="uid://cycbyex325fmu" path="res://scenes/controles_android/controles_android.tscn" id="8_6ycpv"]
 
 [node name="MainScene" type="Node2D" unique_id=1705776271 node_paths=PackedStringArray("interfaz", "player")]
 script = ExtResource("1_34m6u")
-interfaz = NodePath("Camera2D/Interfaz")
+interfaz = NodePath("Interfaz")
 player = NodePath("Player")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2143081933]
 zoom = Vector2(1.505, 1.505)
 editor_draw_limits = true
 
-[node name="Interfaz" parent="Camera2D" unique_id=195390521 instance=ExtResource("2_2cqfw")]
+[node name="Interfaz" parent="." unique_id=195390521 instance=ExtResource("2_2cqfw")]
 z_index = 1
 offset_left = -379.54
 offset_top = -215.295
 offset_right = -379.54
 offset_bottom = -215.295
+metadata/_edit_use_anchors_ = true
+
+[node name="ControlesAndroid" parent="." unique_id=165701849 instance=ExtResource("8_6ycpv")]
 
 [node name="Map" parent="." unique_id=1727727041 instance=ExtResource("1_symxd")]
 

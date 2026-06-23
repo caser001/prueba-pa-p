@@ -18,16 +18,22 @@ const spawn_escena_atun = preload("res://scenes/animacion_spawn_pez/animacion_sp
 const lata_tuna = preload("res://scenes/lata_tuna/lata_tuna.tscn")
 var botella_veneno = preload("res://scenes/botella_veneno/botella_veneno.tscn")
 const nube_veneno = preload("res://scenes/nube_veneno_player/nube_veneno_player.tscn")
+const botones_android = preload("res://scenes/controles_android/controles_android.tscn")
 @export var interfaz: Control
 @export var player: CharacterBody2D
  
 
 func _ready() -> void:
-	pass
+	if $"/root/GameState".android == true:
+		var botones_android_instanciados = botones_android.instantiate()
+		add_child(botones_android_instanciados)
+		$Camera2D.zoom = Vector2(1.05,1.05)
+		$Camera2D.position = Vector2(0, 95)
+		
 	
 func _physics_process(_delta: float) -> void:
-	$Camera2D/Interfaz.actualizar_vida($"/root/GameState".player_hp)
-	$Camera2D/Interfaz.actualizar_botellas_veneno($"/root/GameState".cantidad_botellas_veneno)
+	$Interfaz.actualizar_vida($"/root/GameState".player_hp)
+	$Interfaz.actualizar_botellas_veneno($"/root/GameState".cantidad_botellas_veneno)
 	
 		#aumentar spawn de ratas
 	if $"/root/GameState".enemigos_muertos > 140:

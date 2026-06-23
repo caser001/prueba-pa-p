@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cycbyex325fmu"]
+
+[ext_resource type="Texture2D" uid="uid://dhmxhcer1vtci" path="res://textures/botones_movil/botones_derecha.png" id="1_17ela"]
+[ext_resource type="Texture2D" uid="uid://cy1e7vfmqtwcn" path="res://textures/botones_movil/botones_arriba.png" id="2_aarko"]
+[ext_resource type="Texture2D" uid="uid://bl3vh010yudvy" path="res://textures/botones_movil/botones_derecha_oscuro.png" id="2_mghtq"]
+[ext_resource type="Texture2D" uid="uid://egs3b4wvn5ji" path="res://textures/botones_movil/botones_pegar.png" id="3_68stf"]
+[ext_resource type="Texture2D" uid="uid://cqu43kntbbawp" path="res://textures/botones_movil/botones_arriba_oscuro.png" id="3_aarko"]
+[ext_resource type="Texture2D" uid="uid://bkb32n6p7a0w0" path="res://textures/botones_movil/botones_abajo.png" id="4_fb7au"]
+[ext_resource type="Texture2D" uid="uid://co5afbax65ina" path="res://textures/botones_movil/botones_izquierda.png" id="5_lp5e0"]
+[ext_resource type="Texture2D" uid="uid://dffxseup3e2pl" path="res://textures/botones_movil/botones_veneno.png" id="6_3q0a1"]
+[ext_resource type="Texture2D" uid="uid://c7801l0bincqe" path="res://textures/botones_movil/botones_pegar_oscuro.png" id="6_6x8tn"]
+[ext_resource type="Texture2D" uid="uid://ecrxawk0gee1" path="res://textures/botones_movil/botones_pausa.png" id="7_3vv0b"]
+[ext_resource type="Texture2D" uid="uid://cqrxiljdbry8w" path="res://textures/botones_movil/botones_abajo_oscuro.png" id="8_7jtwi"]
+[ext_resource type="Texture2D" uid="uid://cal5jsfqas13u" path="res://textures/botones_movil/botones_izquierda_oscuro.png" id="10_h6ob2"]
+[ext_resource type="Texture2D" uid="uid://cjotk5oyjv55l" path="res://textures/botones_movil/botones_veneno_oscuro.png" id="12_b35aa"]
+[ext_resource type="Texture2D" uid="uid://cdwyphgch3umf" path="res://textures/botones_movil/botones_pausa_oscuro.png" id="14_0t63b"]
+
+[node name="ControlesAndroid" type="Control" unique_id=165701849]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 14.655029
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CajaBotones" type="Control" parent="." unique_id=397163265]
+process_mode = 3
+anchors_preset = 0
+offset_left = -503.64
+offset_top = -141.77
+offset_right = -447.435
+offset_bottom = -101.770004
+
+[node name="DerechaTactil" type="TouchScreenButton" parent="CajaBotones" unique_id=928319258]
+process_mode = 3
+position = Vector2(123.640015, 359.77002)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("1_17ela")
+texture_pressed = ExtResource("2_mghtq")
+action = "right"
+
+[node name="ArribaTactil" type="TouchScreenButton" parent="CajaBotones" unique_id=18741043]
+process_mode = 3
+position = Vector2(35.640015, 273.77002)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("2_aarko")
+texture_pressed = ExtResource("3_aarko")
+action = "up"
+
+[node name="AtaqueTactil" type="TouchScreenButton" parent="CajaBotones" unique_id=1494698951]
+process_mode = 3
+position = Vector2(876.64, 329.95502)
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("3_68stf")
+texture_pressed = ExtResource("6_6x8tn")
+action = "equis"
+
+[node name="AbajoTactil" type="TouchScreenButton" parent="CajaBotones" unique_id=737162489]
+process_mode = 3
+position = Vector2(36.640015, 448.77002)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("4_fb7au")
+texture_pressed = ExtResource("8_7jtwi")
+action = "down"
+
+[node name="IzquierdaTactil" type="TouchScreenButton" parent="CajaBotones" unique_id=1605214355]
+process_mode = 3
+position = Vector2(-51.359985, 361.77002)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("5_lp5e0")
+texture_pressed = ExtResource("10_h6ob2")
+action = "left"
+
+[node name="VenenoTactil" type="TouchScreenButton" parent="CajaBotones" unique_id=1694420372]
+process_mode = 3
+position = Vector2(762.55, 359.77)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("6_3q0a1")
+texture_pressed = ExtResource("12_b35aa")
+action = "circulo"
+
+[node name="PausaTactil" type="TouchScreenButton" parent="CajaBotones" unique_id=320956048]
+process_mode = 3
+position = Vector2(455.64, 359.77)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("7_3vv0b")
+texture_pressed = ExtResource("14_0t63b")
+action = "pause"

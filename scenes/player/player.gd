@@ -18,7 +18,7 @@ signal enemigo_menos
 
 
 func _ready() -> void:
-	interfaz = get_parent().get_node("Camera2D").get_node("Interfaz")
+	interfaz = get_parent().get_node("Interfaz")
 	$AnimatedSprite2D.play("idle_down")
 	
 

@@ -1,6 +1,4 @@
-Cambiar fondo
 Guardar record mas alto
-dash
 Mejorar menu
 Mejorar Interfaz
 Meter al totolas
