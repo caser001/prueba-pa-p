@@ -1,12 +1,10 @@
-name: Build iOS
+name: Build iOS (Godot 4.x)
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -14,53 +12,55 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
-    - name: Download Godot
+    - name: Download Godot 4.x
       run: |
-        wget https://github.com/godotengine/godot/releases/download/3.5.3-stable/Godot_v3.5.3-stable_osx.universal.zip
-        unzip Godot_v3.5.3-stable_osx.universal.zip -d godot
-        sudo mv godot/Godot.app /Applications/Godot.app
+        # Adjust the URL if a specific 4.6 sub-version is released
+        wget https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_macos.universal.zip
+        unzip Godot_v4.6-stable_macos.universal.zip
+        sudo mv Godot.app /Applications/Godot.app
+        # In Godot 4, the binary is inside Contents/MacOS/Godot
         sudo ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
 
-    - name: Download Godot Export Templates
+    - name: Setup Godot Export Templates
       run: |
-        mkdir -p ~/Library/Application\ Support/Godot/templates/3.5.3.stable
-        cd ~/Library/Application\ Support/Godot/templates/3.5.3.stable
-        wget https://github.com/godotengine/godot/releases/download/3.5.3-stable/Godot_v3.5.3-stable_export_templates.tpz
-        tar -xzf Godot_v3.5.3-stable_export_templates.tpz -C ~/Library/Application\ Support/Godot/templates/3.5.3.stable
-        cd templates
-        mv * ..
-        cd ..
-        ls
+        # Godot 4 uses 'editor_data' or standard paths. On macOS Actions:
+        mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.6.stable
+        wget https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
+        # Use unzip for .tpz (which is just a renamed zip)
+        unzip Godot_v4.6-stable_export_templates.tpz -d temp_templates
+        mv temp_templates/templates/* ~/Library/Application\ Support/Godot/export_templates/4.6.stable/
+        rm -rf temp_templates Godot_v4.6-stable_export_templates.tpz
 
-    - name: Create build directory
-      run: mkdir -p build
+    - name: Create Build Directory
+      run: mkdir -p build/ios
 
-    - name: Export iOS project
-      run: godot --export "iOS" build/your_project_name.xcodeproj
-      env:
-        DISPLAY: :99.0
+    - name: Export Xcode Project
+      # Use --headless in Godot 4 instead of DISPLAY hacks
+      # Ensure you have an export preset named "iOS" in your project!
+      run: godot --headless --export-release "iOS" build/ios/your_project_name.xcodeproj
+
+    - name: Build Xcode Archive
+      run: |
+        xcodebuild archive \
+          -project build/ios/your_project_name.xcodeproj \
+          -scheme "your_project_name" \
+          -archivePath build/ios/your_project_name.xcarchive \
+          -configuration Release \
+          CODE_SIGNING_ALLOWED=NO \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGN_IDENTITY=""
+
+    - name: Package IPA (Unsigned)
+      run: |
+        cd build/ios
+        mkdir -p Payload
+        cp -r your_project_name.xcarchive/Products/Applications/*.app Payload/
+        zip -r your_project_name.ipa Payload
         
-    - name: Set iOS Deployment Target
-      run: sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 10.0;/IPHONEOS_DEPLOYMENT_TARGET = 12.0;/' build/your_project_name.xcodeproj/project.pbxproj
-
-
-    - name: Build iOS project
-      run: xcodebuild -project build/your_project_name.xcodeproj -scheme your_project_name -configuration Development -archivePath build/your_project_name.xcarchive archive \ CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-
-    - name: Export IPA
-      run: | 
-        cd build
-        cd your_project_name.xcarchive
-        cd Products
-        cd Applications
-        mkdir Payload
-        mv your_project_name.app Payload/
-        zip -r App.ipa Payload/
-        mv App.ipa ../../../
-    - name: Upload IPA to GitHub Artifacts
+    - name: Upload IPA Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Ipa
-        path: build/App.ipa
+        name: iOS-Build-Unsigned
+        path: build/ios/your_project_name.ipa
