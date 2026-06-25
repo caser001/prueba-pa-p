@@ -27,14 +27,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BotonReiniciar" type="Button" parent="." unique_id=1795086269]
-offset_left = 461.0
-offset_top = 530.0
-offset_right = 706.0
-offset_bottom = 608.0
+offset_left = 455.0
+offset_top = 573.0
+offset_right = 700.0
+offset_bottom = 645.0
 theme_override_font_sizes/font_size = 46
-text = "Reintentar X"
+text = "Reintentar"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=496005190]
 position = Vector2(577, 323)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1424617355]
+offset_left = 942.0
+offset_top = 482.0
+offset_right = 1148.0
+offset_bottom = 641.0
+
+[node name="RecordPersonaje" type="Label" parent="VBoxContainer" unique_id=1410937443]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="RecordVeneno" type="Label" parent="VBoxContainer" unique_id=2133578752]
+layout_mode = 2
+horizontal_alignment = 1
 
 [connection signal="pressed" from="BotonReiniciar" to="." method="_on_boton_reiniciar_pressed"]

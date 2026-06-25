@@ -9,7 +9,10 @@ const _nube_veneno_enemy = preload("res://scenes/nube_veneno_enemy/nube_veneno_e
 const main_scene = preload("res://scenes/main_scene/main_scene.tscn")
 
 func _ready() -> void:
-	player = get_parent().get_node("Player")
+	if $"/root/GameState".personaje_seleccionado == 1:
+		player = get_parent().get_node("Nitolas")
+	if $"/root/GameState".personaje_seleccionado == 2:
+		player = get_parent().get_node("Totolas")
 
 func _physics_process(_delta: float) -> void:
 	#IA y movimiento

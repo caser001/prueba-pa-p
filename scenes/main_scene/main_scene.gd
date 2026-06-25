@@ -19,16 +19,39 @@ const lata_tuna = preload("res://scenes/lata_tuna/lata_tuna.tscn")
 var botella_veneno = preload("res://scenes/botella_veneno/botella_veneno.tscn")
 const nube_veneno = preload("res://scenes/nube_veneno_player/nube_veneno_player.tscn")
 const botones_android = preload("res://scenes/controles_android/controles_android.tscn")
+const nitolas = preload("res://scenes/player/nitolas.tscn")
+const totolas = preload("res://scenes/totolas/totolas.tscn")
 @export var interfaz: Control
 @export var player: CharacterBody2D
  
 
 func _ready() -> void:
+	print("personaje record ", $"/root/GameState".personaje_seleccionado_record)
+	print("personaje normal ", $"/root/GameState".personaje_seleccionado)
+	#Ajustar para movil
 	if $"/root/GameState".android == true:
 		var botones_android_instanciados = botones_android.instantiate()
 		add_child(botones_android_instanciados)
 		$Camera2D.zoom = Vector2(1.05,1.05)
 		$Camera2D.position = Vector2(0, 95)
+		
+	#Meter personaje
+	if $"/root/GameState".personaje_seleccionado == 1:
+		player = nitolas.instantiate()
+		$"/root/GameState".max_hp = 7
+		$"/root/GameState".max_botellas_veneno = 3
+	else:
+		player = totolas.instantiate()
+		$"/root/GameState".max_hp = 14
+		$"/root/GameState".max_botellas_veneno = 5
+	add_child(player)
+	player.enemigo_menos.connect(_on_player_enemigo_menos)
+	
+	#reiniciar numero de enemigos y botellas de veneno
+	$"/root/GameState".enemigos_muertos = 0
+	$"/root/GameState".cantidad_botellas_veneno = 0
+	$"/root/GameState".player_hp = $"/root/GameState".max_hp
+	$"/root/GameState".cantidad_botellas_veneno_usadas = 0
 		
 	
 func _physics_process(_delta: float) -> void:
@@ -62,6 +85,7 @@ func _physics_process(_delta: float) -> void:
 			add_child(_nube_veneno_instanciada)
 			_nube_veneno_instanciada.position = $"/root/GameState".posicion_jugador
 			$"/root/GameState".cantidad_botellas_veneno -= 1
+			$"/root/GameState".cantidad_botellas_veneno_usadas += 1
 			await get_tree().create_timer(1).timeout
 		tirando_veneno = false
 
@@ -129,14 +153,14 @@ func _on_player_enemigo_menos() -> void:
 	$"/root/GameState".enemigos_muertos += 1
 	interfaz.actualizar_ratas_muertas($"/root/GameState".enemigos_muertos)
 	if $"/root/GameState".ultimo_enemigo_muerto.is_in_group("atun"):
-		if $"/root/GameState".player_hp < 7:
+		if $"/root/GameState".player_hp < $"/root/GameState".max_hp:
 			if numero_random_spawn_objeto() <= 35:
 				var lata_tuna_instanciada = lata_tuna.instantiate()
 				lata_tuna_instanciada.position = $"/root/GameState".posicion_enemigo_muerto
 				add_child(lata_tuna_instanciada)
 	interfaz.actualizar_ratas_muertas($"/root/GameState".enemigos_muertos)
 	if $"/root/GameState".ultimo_enemigo_muerto.is_in_group("rata"):
-		if $"/root/GameState".cantidad_botellas_veneno < 3:
+		if $"/root/GameState".cantidad_botellas_veneno < $"/root/GameState".max_botellas_veneno:
 			if numero_random_spawn_objeto() <= 10:
 				var botella_veneno_instanciada = botella_veneno.instantiate()
 				botella_veneno_instanciada.position = $"/root/GameState".posicion_enemigo_muerto

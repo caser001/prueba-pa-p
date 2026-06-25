@@ -29,7 +29,7 @@ offset_bottom = 146.0
 
 [node name="Iniciar" type="Button" parent="VBoxContainer" unique_id=2066241939]
 layout_mode = 2
-text = "Iniciar Juego X"
+text = "Iniciar Juego"
 
 [node name="Ajustes" type="Button" parent="VBoxContainer" unique_id=1384717381]
 layout_mode = 2
@@ -38,6 +38,18 @@ text = "Ajustes"
 [node name="CerrarJuego" type="Button" parent="VBoxContainer" unique_id=2001325180]
 layout_mode = 2
 text = "Salir"
+
+[node name="RecordEnemigos" type="Label" parent="VBoxContainer" unique_id=594394264]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="RecordPersonaje" type="Label" parent="VBoxContainer" unique_id=1244313663]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="RecordVeneno" type="Label" parent="VBoxContainer" unique_id=1594002691]
+layout_mode = 2
+horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Iniciar" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Ajustes" to="." method="_on_ajustes_pressed"]

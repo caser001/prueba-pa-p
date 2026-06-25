@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cmw4p8pjg7665"]
+
+[ext_resource type="Script" uid="uid://cttjl5exvnvmh" path="res://scenes/seleccion_de_personaje/seleccion_de_personaje.gd" id="1_hwke6"]
+[ext_resource type="Texture2D" uid="uid://gsxpjk4b8fmh" path="res://textures/menus/seleccion_personajes.png" id="2_hwke6"]
+[ext_resource type="Texture2D" uid="uid://uft1v5xgt31r" path="res://textures/menus/seleccion_nitolas.png" id="3_rq6o8"]
+[ext_resource type="Texture2D" uid="uid://bf0s1t3kasbll" path="res://textures/menus/seleccion_totolas.png" id="4_dq8jw"]
+
+[node name="SeleccionDePersonaje" type="Node2D" unique_id=499580598]
+script = ExtResource("1_hwke6")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=41974031]
+offset_left = -384.0
+offset_top = -216.0
+offset_right = 384.0
+offset_bottom = 216.0
+texture = ExtResource("2_hwke6")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2000135415]
+zoom = Vector2(1.5, 1.5)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=664960728]
+offset_left = -178.0
+offset_top = -112.0
+offset_bottom = 16.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 50
+
+[node name="SeleccionarNitolas2" type="TextureRect" parent="HBoxContainer" unique_id=144666566]
+layout_mode = 2
+texture = ExtResource("3_rq6o8")
+
+[node name="SeleccionarTotolas2" type="TextureRect" parent="HBoxContainer" unique_id=1517242932]
+layout_mode = 2
+texture = ExtResource("4_dq8jw")
+
+[node name="SeleccionarNitolas" type="Button" parent="." unique_id=2104611112]
+offset_left = -170.0
+offset_top = 97.0
+offset_right = -58.0
+offset_bottom = 136.0
+text = "Nitolas"
+
+[node name="SeleccionarTotolas" type="Button" parent="." unique_id=230012929]
+offset_left = 58.0
+offset_top = 97.0
+offset_right = 170.0
+offset_bottom = 136.0
+text = "Totolas"
+
+[node name="VolverAlMenu" type="Button" parent="." unique_id=68787197]
+offset_left = -381.0
+offset_top = 182.0
+offset_right = -350.0
+offset_bottom = 213.0
+text = "<"
+
+[connection signal="pressed" from="SeleccionarNitolas" to="." method="_on_seleccionar_nitolas_pressed"]
+[connection signal="pressed" from="SeleccionarTotolas" to="." method="_on_seleccionar_totolas_pressed"]
+[connection signal="pressed" from="VolverAlMenu" to="." method="_on_volver_al_menu_pressed"]

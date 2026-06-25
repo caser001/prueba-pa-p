@@ -12,7 +12,10 @@ var turbo: bool = false
 @onready var _particulas_jetpack_procesadas = _particulas_jetpack.process_material as ParticleProcessMaterial
 
 func _ready() -> void:
-	player = get_parent().get_node("Player")
+	if $"/root/GameState".personaje_seleccionado == 1:
+		player = get_parent().get_node("Nitolas")
+	if $"/root/GameState".personaje_seleccionado == 2:
+		player = get_parent().get_node("Totolas")
 
 func _physics_process(_delta: float) -> void:
 	

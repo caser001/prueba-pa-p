@@ -26,10 +26,19 @@ offset_bottom = 40.0
 texture = ExtResource("3_tl42i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=174572230]
-offset_left = -103.0
-offset_top = -1.0
-offset_right = 103.0
-offset_bottom = 158.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -101.515
+offset_top = -37.0
+offset_right = 102.22499
+offset_bottom = 123.81
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReiniciarRecord" type="Button" parent="VBoxContainer" unique_id=681824714]
+layout_mode = 2
+text = "Reiniciar Record"
 
 [node name="ModoAndroid" type="Button" parent="VBoxContainer" unique_id=514336644]
 layout_mode = 2
@@ -41,6 +50,7 @@ text = "Volumen"
 
 [node name="HScrollBar" type="HScrollBar" parent="VBoxContainer" unique_id=1208915632]
 layout_mode = 2
+size_flags_vertical = 3
 max_value = 3.0
 value = 1.5
 
@@ -48,6 +58,7 @@ value = 1.5
 layout_mode = 2
 text = "Volver"
 
+[connection signal="pressed" from="VBoxContainer/ReiniciarRecord" to="." method="_on_reiniciar_record_pressed"]
 [connection signal="pressed" from="VBoxContainer/ModoAndroid" to="." method="_on_modo_android_pressed"]
 [connection signal="scrolling" from="VBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_scrolling"]
 [connection signal="button_down" from="VBoxContainer/Volver" to="." method="_on_volver_button_down"]

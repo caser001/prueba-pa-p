@@ -1,5 +1,7 @@
 Guardar record mas alto
 Mejorar menu
 Mejorar Interfaz
-Meter al totolas
+Mejorar pantalla game over(con que personaje has jugado, venenos gastados)
 Boss
+Al derrotar al boss lo desbloqueas de personaje
+Si llegas a cierta puntuacion, el personaje con el que hayas llegado tendra una corona
