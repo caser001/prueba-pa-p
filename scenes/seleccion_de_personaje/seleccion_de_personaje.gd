@@ -12,11 +12,13 @@ func _process(delta: float) -> void:
 
 func _on_seleccionar_nitolas_pressed() -> void:
 	$"/root/GameState".personaje_seleccionado = 1
+	$"/root/GameState".boss_hp = 18
 	get_tree().change_scene_to_file("res://scenes/main_scene/main_scene.tscn")
 
 
 func _on_seleccionar_totolas_pressed() -> void:
 	$"/root/GameState".personaje_seleccionado = 2
+	$"/root/GameState".boss_hp = 18
 	get_tree().change_scene_to_file("res://scenes/main_scene/main_scene.tscn")
 
 

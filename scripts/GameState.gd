@@ -20,6 +20,10 @@ var personaje_seleccionado_record: int = 0
 var record: int = 0
 var nitolas_corona: bool = false
 var totolas_corona: bool = false
+var boss_hp: int = 18
+var llave = true
+var caja_llave_spawneada = false
+var pistola = false
 
 
 func _ready() -> void:

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://btgtnmaok51jy"]
+
+[ext_resource type="Script" uid="uid://br1ml85phg43t" path="res://scenes/pistola_item/pistola_item.gd" id="1_2uwrl"]
+[ext_resource type="Texture2D" uid="uid://mewnrm804afr" path="res://textures/items/pistola.png" id="1_dsedk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2uwrl"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxvcw"]
+
+[node name="PistolaItem" type="StaticBody2D" unique_id=1861964333]
+script = ExtResource("1_2uwrl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=869102694]
+texture = ExtResource("1_dsedk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=243006983]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_2uwrl")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=420215221]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1810786572]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_mxvcw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cm4n7dqbqolef"]
+
+[ext_resource type="Texture2D" uid="uid://cwd6c8voe4u7o" path="res://textures/Mapa/caja.png" id="1_7cntq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlym0"]
+size = Vector2(26, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6ltv"]
+radius = 15.0
+
+[node name="Caja" type="Node2D" unique_id=1303550080]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1164795012]
+texture = ExtResource("1_7cntq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=746451862]
+collision_layer = 16
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1781103208]
+shape = SubResource("RectangleShape2D_qlym0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=574319711]
+shape = SubResource("CircleShape2D_o6ltv")

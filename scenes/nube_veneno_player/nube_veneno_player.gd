@@ -4,7 +4,7 @@ signal impacto(body)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	add_to_group("nube_veneno")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,12 +13,15 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	$EfectoMatar.play()
 	if body.is_in_group("enemies"):
+		$EfectoMatar.play()
 		$"/root/GameState".posicion_enemigo_muerto = body.position
 		$"/root/GameState".ultimo_enemigo_muerto = body
 		$"/root/GameState".enemigos_muertos += 1
 		body.queue_free()
+
+	if body.is_in_group("caja_llave"):
+		body.romper()
 
 func parpadeo_desaparecer(numero):
 	for i in numero:

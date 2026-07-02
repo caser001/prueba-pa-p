@@ -138,6 +138,6 @@ autostart = true
 
 [node name="Turbo" type="AudioStreamPlayer2D" parent="." unique_id=1545641473]
 stream = ExtResource("4_whpj1")
-volume_db = -20.0
+volume_db = -10.0
 
 [connection signal="timeout" from="TimerTurbo" to="." method="_on_timer_turbo_timeout"]

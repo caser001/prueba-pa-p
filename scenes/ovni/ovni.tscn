@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dnly3y4q1fq8l"]
+
+[ext_resource type="Script" uid="uid://c7jnpupnmex54" path="res://scenes/ovni/ovni.gd" id="1_bgnui"]
+[ext_resource type="Texture2D" uid="uid://btebvsjgpshk2" path="res://textures/enemigo/ovni.png" id="1_o8boo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41w71"]
+atlas = ExtResource("1_o8boo")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g13q6"]
+atlas = ExtResource("1_o8boo")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejheh"]
+atlas = ExtResource("1_o8boo")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0vba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41w71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g13q6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejheh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8boo"]
+size = Vector2(65, 112)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=259600 groups=["ovni"]]
+collision_layer = 12
+script = ExtResource("1_bgnui")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1794708264]
+sprite_frames = SubResource("SpriteFrames_k0vba")
+autoplay = "default"
+frame_progress = 0.28012452
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1158390153]
+position = Vector2(0.5, -5)
+shape = SubResource("RectangleShape2D_o8boo")

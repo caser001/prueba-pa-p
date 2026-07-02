@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://ciun0ratnbl72"]
+
+[ext_resource type="Script" uid="uid://y4iw6736njeu" path="res://scenes/ovni_vacio/ovni_vacio.gd" id="1_i7i4g"]
+[ext_resource type="Texture2D" uid="uid://btebvsjgpshk2" path="res://textures/enemigo/ovni.png" id="1_k5hqa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7i4g"]
+atlas = ExtResource("1_k5hqa")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcqb2"]
+atlas = ExtResource("1_k5hqa")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toc1b"]
+atlas = ExtResource("1_k5hqa")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klb02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7i4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcqb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toc1b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klb02"]
+atlas = ExtResource("1_k5hqa")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wekl"]
+atlas = ExtResource("1_k5hqa")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alunk"]
+atlas = ExtResource("1_k5hqa")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_khcmx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klb02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wekl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alunk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wekl"]
+size = Vector2(107, 69)
+
+[node name="OvniVacio" type="Node2D" unique_id=1831147392]
+script = ExtResource("1_i7i4g")
+
+[node name="ovni_vacio" type="Area2D" parent="." unique_id=2046305738]
+collision_layer = 0
+collision_mask = 4
+
+[node name="SpriteVacio" type="AnimatedSprite2D" parent="ovni_vacio" unique_id=1387821798]
+sprite_frames = SubResource("SpriteFrames_klb02")
+autoplay = "default"
+frame_progress = 0.98935866
+
+[node name="SpriteAlien" type="AnimatedSprite2D" parent="ovni_vacio" unique_id=489021155]
+sprite_frames = SubResource("SpriteFrames_khcmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ovni_vacio" unique_id=891330965]
+position = Vector2(-0.5, -10.5)
+shape = SubResource("RectangleShape2D_6wekl")
+
+[connection signal="body_entered" from="ovni_vacio" to="." method="_on_ovni_vacio_body_entered"]

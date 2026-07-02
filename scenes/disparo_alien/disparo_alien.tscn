@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dtn66lq1ga3q5"]
+
+[ext_resource type="Script" uid="uid://crepc2i0hn0yj" path="res://scenes/disparo_alien/disparo_alien.gd" id="1_5yvm1"]
+[ext_resource type="Texture2D" uid="uid://dbnqx1ghsogmk" path="res://textures/animacion pegar/disparo_alien.png" id="1_vb5ci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktd2v"]
+atlas = ExtResource("1_vb5ci")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gojxq"]
+atlas = ExtResource("1_vb5ci")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yvm1"]
+atlas = ExtResource("1_vb5ci")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sewel"]
+atlas = ExtResource("1_vb5ci")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xiyhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktd2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gojxq")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yvm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sewel")
+}],
+"loop": true,
+"name": &"rojo",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yvm1"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sewel"]
+radius = 6.0
+height = 20.0
+
+[node name="DisparoAlien" type="StaticBody2D" unique_id=1470775567 groups=["enemies"]]
+
+[node name="DisparoAlien" type="Area2D" parent="." unique_id=103753479 groups=["enemies"]]
+script = ExtResource("1_5yvm1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DisparoAlien" unique_id=1524788296]
+sprite_frames = SubResource("SpriteFrames_xiyhs")
+animation = &"Default"
+autoplay = "Default"
+frame_progress = 0.3703521
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisparoAlien" unique_id=637031696]
+shape = SubResource("CapsuleShape2D_5yvm1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1896178388]
+shape = SubResource("CapsuleShape2D_sewel")
+
+[connection signal="body_entered" from="DisparoAlien" to="DisparoAlien" method="_on_body_entered"]

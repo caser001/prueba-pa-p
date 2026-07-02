@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dyid4lfgbcxxs" path="res://scenes/lapida/lapida.tscn" id="6_kbdpr"]
 [ext_resource type="Script" uid="uid://bvbvqyacj3xr4" path="res://scenes/main_scene/controlador_pausa.gd" id="7_6loks"]
 [ext_resource type="PackedScene" uid="uid://cycbyex325fmu" path="res://scenes/controles_android/controles_android.tscn" id="8_6ycpv"]
+[ext_resource type="PackedScene" uid="uid://brweyeplj7ump" path="res://scenes/tp_boss/tp_boss.tscn" id="8_umvci"]
 
-[node name="MainScene" type="Node2D" unique_id=1705776271 node_paths=PackedStringArray("interfaz", "player")]
+[node name="MainScene" type="Node2D" unique_id=1705776271 node_paths=PackedStringArray("interfaz")]
+y_sort_enabled = true
 script = ExtResource("1_34m6u")
 interfaz = NodePath("Interfaz")
-player = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2143081933]
 zoom = Vector2(1.505, 1.505)
@@ -63,5 +64,8 @@ bus = &"Music"
 [node name="ControladorPausa" type="Node" parent="." unique_id=2100242865]
 process_mode = 3
 script = ExtResource("7_6loks")
+
+[node name="TPBoss" parent="." unique_id=708642554 instance=ExtResource("8_umvci")]
+position = Vector2(-174, -166)
 
 [connection signal="timeout" from="SpawnEnemigo" to="." method="_on_spawn_enemigo_timeout"]

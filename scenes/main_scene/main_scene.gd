@@ -16,6 +16,7 @@ const spawn_escena = preload("res://scenes/animacion_spawn/animacion_spawn.tscn"
 const atun_escena = preload("res://scenes/atun/atun.tscn")
 const spawn_escena_atun = preload("res://scenes/animacion_spawn_pez/animacion_spawn_pez.tscn")
 const lata_tuna = preload("res://scenes/lata_tuna/lata_tuna.tscn")
+const caja_llave = preload("res://scenes/caja_llave/caja_llave.tscn")
 var botella_veneno = preload("res://scenes/botella_veneno/botella_veneno.tscn")
 const nube_veneno = preload("res://scenes/nube_veneno_player/nube_veneno_player.tscn")
 const botones_android = preload("res://scenes/controles_android/controles_android.tscn")
@@ -48,10 +49,17 @@ func _ready() -> void:
 	player.enemigo_menos.connect(_on_player_enemigo_menos)
 	
 	#reiniciar numero de enemigos y botellas de veneno
-	$"/root/GameState".enemigos_muertos = 0
-	$"/root/GameState".cantidad_botellas_veneno = 0
-	$"/root/GameState".player_hp = $"/root/GameState".max_hp
-	$"/root/GameState".cantidad_botellas_veneno_usadas = 0
+	if $"/root/GameState".boss_hp > 0:
+		$"/root/GameState".enemigos_muertos = 0
+		$"/root/GameState".cantidad_botellas_veneno = 0
+		$"/root/GameState".player_hp = $"/root/GameState".max_hp
+		$"/root/GameState".cantidad_botellas_veneno_usadas = 0
+	
+	if $"/root/GameState".boss_hp <= 0:
+		player.position = Vector2(-180, -160)
+		$TPBoss.get_node("Area2D").monitoring = false
+		$TPBoss/Area2D/PuertaCerrada.show()
+		$TPBoss/Area2D/PuertaAbierta.hide()
 		
 	
 func _physics_process(_delta: float) -> void:
@@ -148,16 +156,23 @@ func spawnear_enemigo(numero_aleatorio_posicion, numero_aleatorio_enemigo):
 
 func _on_spawn_enemigo_timeout() -> void:
 	spawnear_enemigo(numero_random_posicion(),numero_random_enemigo())
-
+	
+#spawnear items de enemigos
 func _on_player_enemigo_menos() -> void:
 	$"/root/GameState".enemigos_muertos += 1
 	interfaz.actualizar_ratas_muertas($"/root/GameState".enemigos_muertos)
 	if $"/root/GameState".ultimo_enemigo_muerto.is_in_group("atun"):
+		if numero_random_spawn_objeto() >= 80 and $"/root/GameState".enemigos_muertos > 150 and $"/root/GameState".caja_llave_spawneada == false:
+				$"/root/GameState".caja_llave_spawneada = true
+				var caja_llave_instanciada = caja_llave.instantiate()
+				caja_llave_instanciada.position = $"/root/GameState".posicion_enemigo_muerto
+				add_child(caja_llave_instanciada)
 		if $"/root/GameState".player_hp < $"/root/GameState".max_hp:
 			if numero_random_spawn_objeto() <= 35:
 				var lata_tuna_instanciada = lata_tuna.instantiate()
 				lata_tuna_instanciada.position = $"/root/GameState".posicion_enemigo_muerto
 				add_child(lata_tuna_instanciada)
+			
 	interfaz.actualizar_ratas_muertas($"/root/GameState".enemigos_muertos)
 	if $"/root/GameState".ultimo_enemigo_muerto.is_in_group("rata"):
 		if $"/root/GameState".cantidad_botellas_veneno < $"/root/GameState".max_botellas_veneno:
